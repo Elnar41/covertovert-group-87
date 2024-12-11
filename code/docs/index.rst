@@ -5,9 +5,13 @@
 
 Covert Channel documentation
 ============================
+Elnar Ashrafov
 
-Please add your names, group ID, and your link to the forked public repository here by editing `index.rst` in the docs folder.
+Zulfiyya Safarli
 
+Group: 87
+
+Github Repo: https://github.com/Elnar41/covertovert-group-87 
 
 .. toctree::
    :maxdepth: 2

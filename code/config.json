@@ -1,18 +1,18 @@
 {
-  "covert_channel_code": "Replace it with the [Code] of chosen covert channel type seen in ODTUClass.",
+  "covert_channel_code": "CTC-PIT-DNS",
   "send": {
     "parameters": {
-      "parameter1": "p1",
-      "parameter2": 1234,
-      "log_file_name": "Example_UDPTimingInterarrivalChannelSender.log"
+      "parameter1": "example.com", 
+      "parameter2": 500,          
+      "log_file_name": "DNS_TimingInterArrivalSender.log"
     }
   },
   "receive": {
     "parameters": {
-      "parameter1": "p1",
-      "parameter2": 1234,
-      "parameter3": "p3",
-      "log_file_name": "Example_UDPTimingInterarrivalChannelReceiver.log"
+      "parameter1": "example.com",
+      "parameter2": 250,         
+      "parameter3": 10,    
+      "log_file_name": "DNS_TimingInterArrivalReceiver.log"
     }
   }
 }
