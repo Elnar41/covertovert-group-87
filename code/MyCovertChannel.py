@@ -14,7 +14,7 @@ class MyCovertChannel(CovertChannelBase):
         super().__init__()
     
 
-    def send(self, log_file_name, domain, count_time):
+    def send(self, log_file_name, domain, treshold):
         """
             This function sends packets via DNS to transmit a covert binary message. The process begins by generating a random 
             binary message, which is also logged using a function from the CovertChannelBase class. 
@@ -39,14 +39,14 @@ class MyCovertChannel(CovertChannelBase):
         for bit in binary_message:
             packet = IP(dst="172.18.0.3") / UDP(sport=random.randint(1024, 65535), dport=53) / DNS(rd=1, qd=DNSQR(qname=domain))
             if bit == '0':
-                time.sleep(random.uniform(1, count_time / 100) / 1000)  # Shorter delay for 0
+                super().sleep_random_time_ms(1, treshold / 100) # Shorter delay for 0
             elif bit == '1':
-                time.sleep(random.uniform(count_time + 100, count_time * 1.1) / 1000)  # Longer delay for 1
+                super().sleep_random_time_ms(treshold + 100, treshold * 1.1) # Longer delay for 1
 
             super().send(packet)
 
 
-    def receive(self, domain, count_time, log_file_name, received_message, counter, last_packet_time):
+    def receive(self, domain, treshold, log_file_name, received_message, counter, last_packet_time):
             """
             This function receives packets via DNS to reconstruct a covert binary message. 
             It uses the Scapy 'sniff' function to capture DNS query packets and process 
@@ -74,7 +74,7 @@ class MyCovertChannel(CovertChannelBase):
                         # Calculate inter-arrival time
                         inter_arrival_time = (current_time - last_packet_time) * 1000
 
-                        if inter_arrival_time < count_time:  # Short delay indicates '0'
+                        if inter_arrival_time < treshold:  # Short delay indicates '0'
                             received_message += '0'
                         else:  # Longer delay indicates '1'
                             received_message += '1'

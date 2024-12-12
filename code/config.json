@@ -3,14 +3,14 @@
   "send": {
     "parameters": {
       "domain": "metu.edu.tr", 
-      "count_time": 1000,      
+      "treshold": 1000,      
       "log_file_name": "DNS_TimingInterArrivalSender.log"
     }
   },
   "receive": {
     "parameters": {
       "domain": "metu.edu.tr",
-      "count_time": 900,    
+      "treshold": 900,    
       "received_message": "",
       "counter": 0,
       "last_packet_time": -1,
