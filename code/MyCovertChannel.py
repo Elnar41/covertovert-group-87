@@ -34,7 +34,6 @@ class MyCovertChannel(CovertChannelBase):
         received_message = ""
         counter = 0
         last_packet_time = None
-        print("Message received so far: ", end="")
 
         def process_packet(packet):
             nonlocal last_packet_time, received_message, counter
