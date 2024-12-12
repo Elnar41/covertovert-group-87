@@ -15,17 +15,6 @@ Covert channels allow data transmission through non-traditional means, bypassing
 
 ---
 
-## Covert Channel Capacity
-
-The below capacity is measued by below steps:
-1. Create a binary message whose length is 128 (contains 16 character)
-2. Start the timer just before sending the first packet.
-3. Finish the timer, just after sending the last packet.
-4. Find the difference in seconds.
-5. Divide 128 by the calculated time in seconds which will give the capacity
-
-**Our Channel Capacity:** 
-
 ## How It Works
 
 ### Sender
@@ -125,6 +114,17 @@ This project uses a containerized environment with Docker. Follow the steps belo
    - Check the log files for additional verification.
 
 ---
+## Covert Channel Capacity
+
+The below capacity is measued by below steps:
+1. Create a binary message whose length is 128 (contains 16 character)
+2. Start the timer just before sending the first packet.
+3. Finish the timer, just after sending the last packet.
+4. Find the difference in seconds.
+5. Divide 128 by the calculated time in seconds which will give the capacity
+
+**Our Channel Capacity:** 
+
 
 ## Applications and Risks
 
