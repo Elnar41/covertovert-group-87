@@ -4,7 +4,6 @@ import string
 from tabnanny import verbose
 import time
 import random
-from urllib import response
 from scapy.all import DNS, DNSQR, IP, UDP
 from scapy.all import sniff
 from CovertChannelBase import CovertChannelBase
@@ -18,20 +17,16 @@ class MyCovertChannel(CovertChannelBase):
     def send(self, log_file_name, parameter1, parameter2):
     
         binary_message = self.generate_random_binary_message_with_logging(log_file_name)
-        print(binary_message)
         dump_package = IP(dst="172.18.0.3") / UDP(sport=random.randint(1024, 65535), dport=53) / DNS(rd=1, qd=DNSQR(qname=parameter1))
         super().send(dump_package)
         for bit in binary_message:
-            # Construct DNS query packet
-            domain = f"{bit}.{parameter1}"
-            packet = IP(dst="172.18.0.3") / UDP(sport=random.randint(1024, 65535), dport=53) / DNS(rd=1, qd=DNSQR(qname=domain))
+            packet = IP(dst="172.18.0.3") / UDP(sport=random.randint(1024, 65535), dport=53) / DNS(rd=1, qd=DNSQR(qname=parameter1))
             if bit == '0':
                 time.sleep(random.uniform(1, parameter2 / 100) / 1000)  # Shorter delay for 0
             elif bit == '1':
                 time.sleep(random.uniform(parameter2 + 100, parameter2 * 3) / 1000)  # Longer delay for 1
 
             super().send(packet)
-            print(domain)
 
 
     def receive(self, parameter1, parameter2, log_file_name):
@@ -39,11 +34,10 @@ class MyCovertChannel(CovertChannelBase):
         received_message = ""
         counter = 0
         last_packet_time = None
-
+        print("Message received so far: ", end="")
 
         def process_packet(packet):
             nonlocal last_packet_time, received_message, counter
-            print(packet)
             if DNS in packet and packet[DNS].qd and parameter1 in packet[DNS].qd.qname.decode():
                 current_time = time.time()
                 if last_packet_time is not None:
@@ -56,12 +50,10 @@ class MyCovertChannel(CovertChannelBase):
                         received_message += '1'
                     
                     counter += 1
-                    
-                    print(received_message)
                     if counter == 8:
                         char = self.convert_eight_bits_to_character(received_message[-8:])
-                        print("Counter", counter, "Char ", char)
                         counter = 0
+                        print(char, end="")
                         if char == ".":
                            return True
 
