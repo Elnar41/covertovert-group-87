@@ -39,7 +39,7 @@ Covert channels allow data transmission through non-traditional means, bypassing
 
 ## Project Files
 
-### 1. `covert_channel.py`
+### 1. `MyCovertChannel.py`
 The main implementation file containing:
 - The `send()` method for encoding and transmitting messages.
 - The `receive()` method for decoding and reconstructing messages.
@@ -109,7 +109,7 @@ This project uses a containerized environment with Docker. Follow the steps belo
    - Start the sender container. All parameters are also read from the `config.json` file.
 
 3. **Compare Results**:
-   - Run the `make compare` command inside one of the containers. This will read from the `Makefile` and display the results.
+   - Run the `make compare` command inside one of the containers after successfull running (You will notice "Receiver is finished!"). This will read from the `Makefile` and display the results.
    - Check the log files for additional verification.
 
 ---
@@ -130,10 +130,8 @@ This project is intended **only for educational purposes**. Unauthorized use of 
 
 ---
 
-## Key Considerations
+## Key Consideration
 
-1. **Network Latency**: Adjust parameters to account for variability in network delays.
-2. **Message Integrity**: Use an end marker (e.g., `.`) to ensure the message is decoded correctly.
 3. **Detection**: Covert channels can be detected through advanced monitoring tools; this project demonstrates the challenge of maintaining secrecy.
 
 ---
