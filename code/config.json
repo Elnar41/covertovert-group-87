@@ -2,16 +2,15 @@
   "covert_channel_code": "CTC-PIT-DNS",
   "send": {
     "parameters": {
-      "parameter1": "example.com", 
-      "parameter2": 500,          
+      "parameter1": "metu.edu.tr", 
+      "parameter2": 1000,          
       "log_file_name": "DNS_TimingInterArrivalSender.log"
     }
   },
   "receive": {
     "parameters": {
-      "parameter1": "example.com",
-      "parameter2": 250,         
-      "parameter3": 10,    
+      "parameter1": "metu.edu.tr",
+      "parameter2": 900,        
       "log_file_name": "DNS_TimingInterArrivalReceiver.log"
     }
   }
