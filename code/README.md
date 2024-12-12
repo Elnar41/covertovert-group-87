@@ -101,12 +101,13 @@ This project uses a containerized environment with Docker. Follow the steps belo
 ---
 
 ## How to Test
+### Note: Follow Below Sequence
 
 1. **Receiver**:
-   - Start the receiver container. All parameters are read from the `config.json` file. No manual setup is required.
+   - Start the receiver container (described above) and run 'make receive'. All parameters are read from the `config.json` file. No manual setup is required.
 
 2. **Sender**:
-   - Start the sender container. All parameters are also read from the `config.json` file.
+   - Start the sender container (described above) and run 'make send'. All parameters are also read from the `config.json` file.
 
 3. **Compare Results**:
    - Run the `make compare` command inside one of the containers after successfull running (You will notice "Receiver is finished!"). This will read from the `Makefile` and display the results.
