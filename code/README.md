@@ -113,11 +113,10 @@ This project uses a containerized environment with Docker. Follow the steps belo
    - Run the `make compare` command inside one of the containers after successfull running (You will notice "Receiver is finished!"). This will read from the `Makefile` and display the results.
    - Check the log files for additional verification.
 
-Config.json Explanation
+## Config.json Explanation
 It contains the parameters that passed to send and receive methods. Especially, it contains threshold values for both sender and receive. For the sender, it is 1000, and for the receiver it is 900.In the receiver, if the packet is received within 900 seconds, then the bit is counted as 0, otherwise as 1. The reason is that max value for the sender bit 0 is 0.01,  when subtracting and deducting from the current time, it is always less than 900. Actually, it is quite less then 900 (can be even 300-400); however, we consider a network delay as high, and put it that high to avoid any discrepencies. Also, the value for the bit 1 is 1.1, when subtracting and deducting from current time, it is always more than 900. So, by doing so, we ensure that the time limits are within boundaries. Config.json additionally contains log file names and domains
----
-## Covert Channel Capacity
 
+## Covert Channel Capacity
 The below capacity is measued by below steps:
 1. Create a binary message whose length is 128 (contains 16 character)
 2. Start the timer just before sending the first packet.
