@@ -25,7 +25,7 @@ class MyCovertChannel(CovertChannelBase):
             The binary message is then iterated over, and for each bit:
             1. A DNS query packet is created (though the packet itself is not used for encoding).
             2. If the bit is '0', the function introduces a short delay (ranging from 0.001 ms to 0.01 ms).
-            3. If the bit is '1', the function introduces a longer delay (ranging from 1.1 seconds to 3 seconds). 
+            3. If the bit is '1', the function introduces a longer delay (max 1.1). 
 
             The delay values are chosen to accommodate potential network delays. Even in cases of network-induced latency, the 
             receiver should be able to distinguish between '0' and '1'. After the delay, the packet is sent.
@@ -41,7 +41,7 @@ class MyCovertChannel(CovertChannelBase):
             if bit == '0':
                 time.sleep(random.uniform(1, count_time / 100) / 1000)  # Shorter delay for 0
             elif bit == '1':
-                time.sleep(random.uniform(count_time + 100, count_time * 3) / 1000)  # Longer delay for 1
+                time.sleep(random.uniform(count_time + 100, count_time * 1.1) / 1000)  # Longer delay for 1
 
             super().send(packet)
 
